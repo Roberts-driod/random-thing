@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="weightInput">Metri</label>
+    <input type="number" id="heightInput" />
+    <br />
+    <label for="weightInput">Kg</label>
+    <input type="number" id="weightInput" />
+
+    <button id="calculateBtn">Aprēķināt ĶMI</button>
+
+    <p id="result"></p>
+
+    <script>
+      let inputNumberM = document.getElementById("heightInput");
+      let inputNumberKg = document.getElementById("weightInput");
+      let text = document.getElementById("result");
+      let button = document.getElementById("calculateBtn");
+      //ĶMI = svars / (augums * augums)
+      function calk() {
+        // cikls
+        let inputs = [inputNumberM, inputNumberKg];
+        let allFilled = true;
+
+        for (let input of inputs) {
+          if (!input.value || input.value <= 0) {
+            allFilled = false;
+            break;
+          }
+        }
+
+        if (!allFilled) {
+          text.innerHTML = "Lūdzu, ievadiet derīgas vērtības visos laukos.";
+          return;
+        }
+        // calk
+
+        let res =
+          inputNumberKg.value / (inputNumberM.value * inputNumberM.value);
+        console.log(res);
+        // checking
+        if (res < 18.5) {
+          text.innerHTML =
+            "Jūsu ĶMI ir: " +
+            res +
+            "kas atbilst kategorijai: Nepietiekams svars";
+        } else if ((res >= 18.5, res <= 24.9)) {
+          text.innerHTML =
+            "Jūsu ĶMI ir: " + res + "kas atbilst kategorijai: Normāls svars";
+        } else if ((res >= 25, res <= 29.9)) {
+          text.innerHTML =
+            "Jūsu ĶMI ir: " + res + "kas atbilst kategorijai: Liekais svars";
+        } else if (res >= 30) {
+          text.innerHTML =
+            "Jūsu ĶMI ir: " + res + "kas atbilst kategorijai: aptaukošanās";
+        }
+      }
+      button.addEventListener("click", calk);
+    </script>
+  </body>
+</html>
